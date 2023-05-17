@@ -2,7 +2,7 @@ from flask import jsonify, request
 import datetime
 import os
 import functions_framework
-from google.cloud import firestore
+from google.cloud import firestore_v1
 
 def write_payload_to_file(payload):
     with open('/tmp/payload.txt', 'a') as f:
@@ -10,7 +10,7 @@ def write_payload_to_file(payload):
 
 
 def write_to_firestore(payload):
-    db = firestore.Client()
+    db = firestore_v1.Client()
     collection_name = 'deploy_register'
 
     doc_ref = db.collection(collection_name).document()
